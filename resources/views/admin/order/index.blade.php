@@ -65,9 +65,9 @@
                         </td>
                         <td>
                             @if($order->bukti_pembayaran)
-                                <a href="{{ asset('storage/' . $order->bukti_pembayaran) }}" target="_blank" class="btn btn-sm btn-info">
+                                <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#buktiModal{{ $order->id }}">
                                     <i class="bi bi-image"></i> Lihat
-                                </a>
+                                </button>
                             @else
                                 -
                             @endif
@@ -120,4 +120,28 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Bukti Pembayaran -->
+@foreach($orders as $order)
+    @if($order->bukti_pembayaran)
+    <div class="modal fade" id="buktiModal{{ $order->id }}" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Bukti Pembayaran - {{ $order->nama_pemesan }}</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="{{ asset('storage/' . $order->bukti_pembayaran) }}" alt="Bukti Pembayaran" class="img-fluid" style="max-height: 600px;">
+                    <div class="mt-3">
+                        <a href="{{ asset('storage/' . $order->bukti_pembayaran) }}" target="_blank" class="btn btn-primary">
+                            <i class="bi bi-download"></i> Download / Buka di Tab Baru
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+@endforeach
 @endsection
