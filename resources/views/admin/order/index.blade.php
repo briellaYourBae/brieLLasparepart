@@ -35,37 +35,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($pesanans as $index => $pesanan)
+                    @forelse($orders as $index => $order)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $pesanan->nama_pemesan }}<br><small class="text-muted">{{ $pesanan->no_telepon }}</small></td>
-                        <td>{{ $pesanan->produk->nama_produk }}</td>
-                        <td>{{ $pesanan->jumlah }} Kg</td>
-                        <td>Rp {{ number_format($pesanan->total_harga, 0, ',', '.') }}</td>
+                        <td>{{ $order->nama_pemesan }}<br><small class="text-muted">{{ $order->no_telepon }}</small></td>
+                        <td>{{ $order->sparepart->nama }}</td>
+                        <td>{{ $order->jumlah }}</td>
+                        <td>Rp {{ number_format($order->total_harga, 0, ',', '.') }}</td>
                         <td>
-                            @if($pesanan->metode_pengambilan == 'ambil_sendiri')
-                                <span class="badge bg-info">Ambil Sendiri</span>
+                            @if($order->metode_pengambilan == 'pickup')
+                                <span class="badge bg-info">Pickup</span>
                             @else
-                                <span class="badge bg-primary">Diantar</span>
+                                <span class="badge bg-primary">Delivery</span>
                             @endif
                         </td>
                         <td>
-                            @if($pesanan->metode_pembayaran == 'tunai')
+                            @if($order->metode_pembayaran == 'tunai')
                                 <span class="badge bg-secondary">Tunai</span>
                             @else
                                 <span class="badge bg-success">Transfer</span>
                             @endif
                         </td>
                         <td>
-                            @if($pesanan->dp_dibayar > 0)
-                                Rp {{ number_format($pesanan->dp_dibayar, 0, ',', '.') }}
+                            @if($order->dp_dibayar > 0)
+                                Rp {{ number_format($order->dp_dibayar, 0, ',', '.') }}
                             @else
                                 -
                             @endif
                         </td>
                         <td>
-                            @if($pesanan->bukti_pembayaran)
-                                <a href="{{ asset('storage/' . $pesanan->bukti_pembayaran) }}" target="_blank" class="btn btn-sm btn-info">
+                            @if($order->bukti_pembayaran)
+                                <a href="{{ asset('storage/' . $order->bukti_pembayaran) }}" target="_blank" class="btn btn-sm btn-info">
                                     <i class="bi bi-image"></i> Lihat
                                 </a>
                             @else
@@ -73,35 +73,35 @@
                             @endif
                         </td>
                         <td>
-                            @if($pesanan->tanggal_ambil)
-                                {{ $pesanan->tanggal_ambil->format('d/m/Y') }}
+                            @if($order->tanggal_ambil)
+                                {{ $order->tanggal_ambil }}
                             @else
                                 -
                             @endif
                         </td>
                         <td>
-                            @if($pesanan->status == 'pending')
+                            @if($order->status == 'pending')
                                 <span class="badge bg-warning">Pending</span>
-                            @elseif($pesanan->status == 'diproses')
+                            @elseif($order->status == 'diproses')
                                 <span class="badge bg-info">Diproses</span>
-                            @elseif($pesanan->status == 'selesai')
+                            @elseif($order->status == 'selesai')
                                 <span class="badge bg-success">Selesai</span>
                             @else
                                 <span class="badge bg-danger">Dibatalkan</span>
                             @endif
                         </td>
                         <td>
-                            <form action="{{ route('admin.pesanan.updateStatus', $pesanan) }}" method="POST" class="d-inline">
+                            <form action="{{ route('admin.order.updateStatus', $order) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('PATCH')
                                 <select name="status" class="form-select form-select-sm d-inline w-auto" onchange="this.form.submit()">
-                                    <option value="pending" {{ $pesanan->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                                    <option value="diproses" {{ $pesanan->status == 'diproses' ? 'selected' : '' }}>Diproses</option>
-                                    <option value="selesai" {{ $pesanan->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
-                                    <option value="dibatalkan" {{ $pesanan->status == 'dibatalkan' ? 'selected' : '' }}>Dibatalkan</option>
+                                    <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="diproses" {{ $order->status == 'diproses' ? 'selected' : '' }}>Diproses</option>
+                                    <option value="selesai" {{ $order->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                                    <option value="dibatalkan" {{ $order->status == 'dibatalkan' ? 'selected' : '' }}>Dibatalkan</option>
                                 </select>
                             </form>
-                            <form action="{{ route('admin.pesanan.destroy', $pesanan) }}" method="POST" class="d-inline">
+                            <form action="{{ route('admin.order.destroy', $order) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')">
