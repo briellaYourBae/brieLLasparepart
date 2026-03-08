@@ -9,9 +9,38 @@
         <p class="text-muted mb-0">Selamat datang, <strong>{{ Auth::user()->name }}</strong></p>
     </div>
     <div class="text-end">
-        <small class="text-muted"><i class="bi bi-calendar"></i> {{ date('d F Y') }}</small>
+        <div class="fw-bold text-danger" id="currentDateTime"></div>
+        <small class="text-muted">Waktu Real-time</small>
     </div>
 </div>
+
+<script>
+function updateDateTime() {
+    const now = new Date();
+    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    
+    const dayName = days[now.getDay()];
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = months[now.getMonth()];
+    const year = now.getFullYear();
+    
+    let hours = now.getHours();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const hoursStr = String(hours).padStart(2, '0');
+    
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    
+    const dateTimeString = `${dayName}, ${day} ${month} ${year} - ${hoursStr}:${minutes}:${seconds} ${ampm}`;
+    document.getElementById('currentDateTime').textContent = dateTimeString;
+}
+
+updateDateTime();
+setInterval(updateDateTime, 1000);
+</script>
 
 <div class="row g-4 mb-4">
     <div class="col-md-3">
