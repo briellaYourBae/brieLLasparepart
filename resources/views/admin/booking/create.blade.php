@@ -1,58 +1,75 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Data Panen')
+@section('title', 'Tambah Booking Servis')
 
 @section('content')
 <div class="mb-4">
-    <h2 class="fw-bold text-success">Tambah Data Panen</h2>
+    <h2 class="fw-bold text-danger">Tambah Booking Servis</h2>
 </div>
 
 <div class="card shadow-sm">
     <div class="card-body">
-        <form action="{{ route('admin.panen.store') }}" method="POST">
+        <form action="{{ route('admin.booking.store') }}" method="POST">
             @csrf
             <div class="mb-3">
-                <label class="form-label">Tanggal Panen</label>
-                <input type="date" name="tanggal_panen" class="form-control @error('tanggal_panen') is-invalid @enderror" value="{{ old('tanggal_panen') }}" required>
-                @error('tanggal_panen')
+                <label class="form-label">Nama</label>
+                <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" required>
+                @error('nama')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Jumlah Panen (Kg)</label>
-                <input type="number" name="jumlah_panen" class="form-control @error('jumlah_panen') is-invalid @enderror" value="{{ old('jumlah_panen') }}" required>
-                @error('jumlah_panen')
+                <label class="form-label">No HP</label>
+                <input type="text" name="no_hp" class="form-control @error('no_hp') is-invalid @enderror" value="{{ old('no_hp') }}" required>
+                @error('no_hp')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Kualitas</label>
-                <select name="kualitas" class="form-select @error('kualitas') is-invalid @enderror" required>
-                    <option value="">Pilih Kualitas</option>
-                    <option value="Premium" {{ old('kualitas') == 'Premium' ? 'selected' : '' }}>Premium</option>
-                    <option value="Super" {{ old('kualitas') == 'Super' ? 'selected' : '' }}>Super</option>
-                    <option value="Reguler" {{ old('kualitas') == 'Reguler' ? 'selected' : '' }}>Reguler</option>
+                <label class="form-label">Motor</label>
+                <input type="text" name="motor" class="form-control @error('motor') is-invalid @enderror" value="{{ old('motor') }}" required>
+                @error('motor')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Jenis Servis</label>
+                <select name="jenis_servis" class="form-select @error('jenis_servis') is-invalid @enderror" required>
+                    <option value="">Pilih Jenis Servis</option>
+                    <option value="Servis Ringan" {{ old('jenis_servis') == 'Servis Ringan' ? 'selected' : '' }}>Servis Ringan</option>
+                    <option value="Servis Berat" {{ old('jenis_servis') == 'Servis Berat' ? 'selected' : '' }}>Servis Berat</option>
+                    <option value="Ganti Oli" {{ old('jenis_servis') == 'Ganti Oli' ? 'selected' : '' }}>Ganti Oli</option>
+                    <option value="Tune Up" {{ old('jenis_servis') == 'Tune Up' ? 'selected' : '' }}>Tune Up</option>
                 </select>
-                @error('kualitas')
+                @error('jenis_servis')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Keterangan</label>
-                <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" rows="3">{{ old('keterangan') }}</textarea>
-                @error('keterangan')
+                <label class="form-label">Tanggal Booking</label>
+                <input type="date" name="tanggal_booking" class="form-control @error('tanggal_booking') is-invalid @enderror" value="{{ old('tanggal_booking') }}" required>
+                @error('tanggal_booking')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Keluhan</label>
+                <textarea name="keluhan" class="form-control @error('keluhan') is-invalid @enderror" rows="3">{{ old('keluhan') }}</textarea>
+                @error('keluhan')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-danger">
                     <i class="bi bi-save"></i> Simpan
                 </button>
-                <a href="{{ route('admin.panen.index') }}" class="btn btn-secondary">
+                <a href="{{ route('admin.booking.index') }}" class="btn btn-secondary">
                     <i class="bi bi-arrow-left"></i> Kembali
                 </a>
             </div>
