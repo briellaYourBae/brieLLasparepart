@@ -53,6 +53,6 @@ class PublicOrderController extends Controller
             'status' => 'pending',
         ]);
 
-        return redirect()->route('sparepart')->with('success', 'Pesanan berhasil! Kami akan menghubungi Anda segera.');
+        return redirect()->route('sparepart')->with('success', 'Pesanan berhasil dikirim! Mohon tunggu konfirmasi dari admin melalui nomor WhatsApp yang sudah Anda inputkan.');
     }
 }

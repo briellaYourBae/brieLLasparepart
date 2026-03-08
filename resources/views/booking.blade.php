@@ -32,9 +32,12 @@
                     <div class="card-body">
                         @if(session('success'))
                             <div class="alert alert-success alert-dismissible fade show">
-                                {{ session('success') }}
+                                <i class="bi bi-check-circle"></i> {{ session('success') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                             </div>
+                            <script>
+                                alert('✅ {{ session('success') }}');
+                            </script>
                         @endif
                         <form action="{{ route('booking.store') }}" method="POST">
                             @csrf
