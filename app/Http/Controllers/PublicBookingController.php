@@ -11,7 +11,7 @@ class PublicBookingController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'no_hp' => 'required|string|max:20',
+            'no_hp' => 'required|numeric|digits_between:10,15',
             'motor' => 'required|string|max:255',
             'jenis_servis' => 'required|string',
             'tanggal_booking' => 'required|date',

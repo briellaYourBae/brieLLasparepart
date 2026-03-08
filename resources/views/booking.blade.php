@@ -30,6 +30,20 @@
                         <h5 class="mb-0">Form Booking Servis</h5>
                     </div>
                     <div class="card-body">
+                        @if($errors->any())
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Data Tidak Valid!',
+                                        html: '<strong>Masukkan data yang benar:</strong><br>{{ $errors->first() }}',
+                                        confirmButtonColor: '#DC3545',
+                                        confirmButtonText: 'OK'
+                                    });
+                                });
+                            </script>
+                        @endif
+                        
                         @if(session('success'))
                             <script>
                                 document.addEventListener('DOMContentLoaded', function() {
@@ -52,7 +66,8 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">No. Telepon/WhatsApp</label>
-                                <input type="text" name="no_hp" class="form-control" required>
+                                <input type="text" name="no_hp" class="form-control" pattern="[0-9]{10,15}" title="Nomor telepon harus berupa angka 10-15 digit" required>
+                                <small class="text-muted">Minimal 10 digit, hanya angka</small>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Jenis Motor</label>

@@ -13,7 +13,7 @@ class PublicOrderController extends Controller
         $request->validate([
             'produk_id' => 'required|exists:produks,id',
             'nama_pemesan' => 'required|string|max:255',
-            'no_telepon' => 'required|string|max:20',
+            'no_telepon' => 'required|numeric|digits_between:10,15',
             'jumlah' => 'required|integer|min:1',
             'metode_pengambilan' => 'required|in:ambil_sendiri,diantar',
             'alamat' => 'required_if:metode_pengambilan,diantar',
