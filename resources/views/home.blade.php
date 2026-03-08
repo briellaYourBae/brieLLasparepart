@@ -202,31 +202,65 @@
         <div class="row text-center">
             <div class="col-md-3">
                 <div class="stat-box">
-                    <div class="stat-number">500+</div>
+                    <div class="stat-number" data-target="500">0</div>
                     <p class="text-muted mb-0">Motor Terservis</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stat-box">
-                    <div class="stat-number">1000+</div>
+                    <div class="stat-number" data-target="1000">0</div>
                     <p class="text-muted mb-0">Sparepart Tersedia</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stat-box">
-                    <div class="stat-number">5+</div>
+                    <div class="stat-number" data-target="5">0</div>
                     <p class="text-muted mb-0">Tahun Pengalaman</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stat-box">
-                    <div class="stat-number">100%</div>
+                    <div class="stat-number" data-target="100">0</div>
                     <p class="text-muted mb-0">Kepuasan Pelanggan</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-target'));
+    const duration = 2000;
+    const increment = target / (duration / 16);
+    let current = 0;
+    
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target + (element.parentElement.querySelector('p').textContent.includes('Kepuasan') ? '%' : '+');
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current) + (element.parentElement.querySelector('p').textContent.includes('Kepuasan') ? '%' : '+');
+        }
+    }, 16);
+}
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const counters = entry.target.querySelectorAll('.stat-number');
+            counters.forEach(counter => animateCounter(counter));
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const statsSection = document.querySelector('.bg-light');
+    if (statsSection) observer.observe(statsSection);
+});
+</script>
 
 <!-- Features Section -->
 <section class="py-5">
