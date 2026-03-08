@@ -6,16 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    protected $table = 'panens';
+    protected $table = 'bookings';
     
     protected $fillable = [
-        'tanggal_panen',
-        'jumlah_panen',
-        'kualitas',
-        'keterangan',
+        'nama',
+        'no_hp',
+        'motor',
+        'jenis_servis',
+        'tanggal_booking',
+        'keluhan',
     ];
 
     protected $casts = [
-        'tanggal_panen' => 'date',
+        'tanggal_booking' => 'date',
     ];
 }

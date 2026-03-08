@@ -9,7 +9,7 @@ class BookingController extends Controller
 {
     public function index()
     {
-        $bookings = Booking::orderBy('tanggal_panen', 'desc')->get();
+        $bookings = Booking::orderBy('tanggal_booking', 'desc')->get();
         return view('admin.booking.index', compact('bookings'));
     }
 
@@ -21,10 +21,12 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tanggal_panen' => 'required|date',
-            'jumlah_panen' => 'required|integer|min:1',
-            'kualitas' => 'required|string',
-            'keterangan' => 'nullable|string',
+            'nama' => 'required|string|max:255',
+            'no_hp' => 'required|string|max:20',
+            'motor' => 'required|string|max:255',
+            'jenis_servis' => 'required|string',
+            'tanggal_booking' => 'required|date',
+            'keluhan' => 'nullable|string',
         ]);
 
         Booking::create($request->all());
@@ -40,10 +42,12 @@ class BookingController extends Controller
     public function update(Request $request, Booking $booking)
     {
         $request->validate([
-            'tanggal_panen' => 'required|date',
-            'jumlah_panen' => 'required|integer|min:1',
-            'kualitas' => 'required|string',
-            'keterangan' => 'nullable|string',
+            'nama' => 'required|string|max:255',
+            'no_hp' => 'required|string|max:20',
+            'motor' => 'required|string|max:255',
+            'jenis_servis' => 'required|string',
+            'tanggal_booking' => 'required|date',
+            'keluhan' => 'nullable|string',
         ]);
 
         $booking->update($request->all());
