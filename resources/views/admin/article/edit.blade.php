@@ -4,17 +4,17 @@
 
 @section('content')
 <div class="mb-4">
-    <h2 class="fw-bold text-success">Edit Artikel</h2>
+    <h2 class="fw-bold text-danger">Edit Artikel</h2>
 </div>
 
 <div class="card shadow-sm">
     <div class="card-body">
-        <form action="{{ route('admin.artikel.update', $artikel) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.article.update', $article) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
                 <label class="form-label">Judul Artikel</label>
-                <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" value="{{ old('judul', $artikel->judul) }}" required>
+                <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" value="{{ old('judul', $article->judul) }}" required>
                 @error('judul')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -22,7 +22,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Konten</label>
-                <textarea name="konten" class="form-control @error('konten') is-invalid @enderror" rows="10" required>{{ old('konten', $artikel->konten) }}</textarea>
+                <textarea name="konten" class="form-control @error('konten') is-invalid @enderror" rows="10" required>{{ old('konten', $article->konten) }}</textarea>
                 @error('konten')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -30,10 +30,10 @@
 
             <div class="mb-3">
                 <label class="form-label">Foto Artikel</label>
-                @if($artikel->foto)
+                @if($article->foto)
                     <div class="mb-2">
                         <p class="fw-bold">Foto Saat Ini (250x250px):</p>
-                        <img src="{{ asset('storage/' . $artikel->foto) }}" alt="{{ $artikel->judul }}" style="width: 250px; height: 250px; object-fit: cover; border-radius: 10px; border: 2px solid #4CAF50;">
+                        <img src="{{ asset('storage/' . $article->foto) }}" alt="{{ $article->judul }}" style="width: 250px; height: 250px; object-fit: cover; border-radius: 10px; border: 2px solid #DC3545;">
                     </div>
                 @endif
                 <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/*" id="fotoInput">
@@ -43,7 +43,7 @@
                 @enderror
                 <div id="previewContainer" class="mt-3" style="display:none;">
                     <p class="fw-bold">Preview Foto Baru (250x250px):</p>
-                    <img id="previewImage" src="" alt="Preview" style="width: 250px; height: 250px; object-fit: cover; border-radius: 10px; border: 2px solid #4CAF50;">
+                    <img id="previewImage" src="" alt="Preview" style="width: 250px; height: 250px; object-fit: cover; border-radius: 10px; border: 2px solid #DC3545;">
                 </div>
             </div>
 
@@ -64,8 +64,8 @@
             <div class="mb-3">
                 <label class="form-label">Status</label>
                 <select name="status" class="form-select @error('status') is-invalid @enderror" required>
-                    <option value="draft" {{ old('status', $artikel->status) == 'draft' ? 'selected' : '' }}>Draft</option>
-                    <option value="published" {{ old('status', $artikel->status) == 'published' ? 'selected' : '' }}>Published</option>
+                    <option value="draft" {{ old('status', $article->status) == 'draft' ? 'selected' : '' }}>Draft</option>
+                    <option value="published" {{ old('status', $article->status) == 'published' ? 'selected' : '' }}>Published</option>
                 </select>
                 @error('status')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -73,10 +73,10 @@
             </div>
 
             <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-danger">
                     <i class="bi bi-save"></i> Update
                 </button>
-                <a href="{{ route('admin.artikel.index') }}" class="btn btn-secondary">
+                <a href="{{ route('admin.article.index') }}" class="btn btn-secondary">
                     <i class="bi bi-arrow-left"></i> Kembali
                 </a>
             </div>

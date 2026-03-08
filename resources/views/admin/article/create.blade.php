@@ -4,12 +4,12 @@
 
 @section('content')
 <div class="mb-4">
-    <h2 class="fw-bold text-success">Tulis Artikel Baru</h2>
+    <h2 class="fw-bold text-danger">Tulis Artikel Baru</h2>
 </div>
 
 <div class="card shadow-sm">
     <div class="card-body">
-        <form action="{{ route('admin.artikel.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.article.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label class="form-label">Judul Artikel</label>
@@ -66,10 +66,10 @@
             </div>
 
             <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-danger">
                     <i class="bi bi-save"></i> Simpan
                 </button>
-                <a href="{{ route('admin.artikel.index') }}" class="btn btn-secondary">
+                <a href="{{ route('admin.article.index') }}" class="btn btn-secondary">
                     <i class="bi bi-arrow-left"></i> Kembali
                 </a>
             </div>
