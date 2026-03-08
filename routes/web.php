@@ -25,6 +25,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\SuperAdminMiddleware::class])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::resource('booking', \App\Http\Controllers\BookingController::class)->names('admin.booking');
+    Route::patch('booking/{booking}/status', [\App\Http\Controllers\BookingController::class, 'updateStatus'])->name('admin.booking.updateStatus');
     Route::resource('sparepart', \App\Http\Controllers\SparepartController::class)->names('admin.sparepart');
     Route::resource('order', \App\Http\Controllers\OrderController::class)->only(['index', 'show', 'destroy'])->names('admin.order');
     Route::patch('order/{order}/status', [\App\Http\Controllers\OrderController::class, 'updateStatus'])->name('admin.order.updateStatus');

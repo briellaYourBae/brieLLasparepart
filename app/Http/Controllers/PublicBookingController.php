@@ -20,6 +20,6 @@ class PublicBookingController extends Controller
 
         Booking::create($request->all());
 
-        return redirect()->route('booking')->with('success', 'Booking berhasil! Kami akan menghubungi Anda segera.');
+        return redirect()->route('booking')->with('success', 'Booking berhasil! Kami akan segera menginformasikan melalui data yang sudah Anda kirim.');
     }
 }

@@ -29,6 +29,8 @@
                         <th>Motor</th>
                         <th>Jenis Servis</th>
                         <th>Tanggal</th>
+                        <th>Keluhan</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -41,10 +43,29 @@
                         <td>{{ $booking->motor }}</td>
                         <td>{{ $booking->jenis_servis }}</td>
                         <td>{{ $booking->tanggal_booking }}</td>
+                        <td>{{ $booking->keluhan ?? '-' }}</td>
                         <td>
-                            <a href="{{ route('admin.booking.edit', $booking) }}" class="btn btn-sm btn-warning">
-                                <i class="bi bi-pencil"></i>
-                            </a>
+                            @if($booking->status == 'pending')
+                                <span class="badge bg-warning">Pending</span>
+                            @elseif($booking->status == 'diproses')
+                                <span class="badge bg-info">Diproses</span>
+                            @elseif($booking->status == 'selesai')
+                                <span class="badge bg-success">Selesai</span>
+                            @else
+                                <span class="badge bg-danger">Dibatalkan</span>
+                            @endif
+                        </td>
+                        <td>
+                            <form action="{{ route('admin.booking.updateStatus', $booking) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('PATCH')
+                                <select name="status" class="form-select form-select-sm d-inline w-auto" onchange="this.form.submit()">
+                                    <option value="pending" {{ $booking->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="diproses" {{ $booking->status == 'diproses' ? 'selected' : '' }}>Diproses</option>
+                                    <option value="selesai" {{ $booking->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                                    <option value="dibatalkan" {{ $booking->status == 'dibatalkan' ? 'selected' : '' }}>Dibatalkan</option>
+                                </select>
+                            </form>
                             <form action="{{ route('admin.booking.destroy', $booking) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
@@ -56,7 +77,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="7" class="text-center text-muted">Belum ada data booking</td>
+                        <td colspan="9" class="text-center text-muted">Belum ada data booking</td>
                     </tr>
                     @endforelse
                 </tbody>

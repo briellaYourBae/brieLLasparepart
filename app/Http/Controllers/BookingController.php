@@ -60,4 +60,15 @@ class BookingController extends Controller
         $booking->delete();
         return redirect()->route('admin.booking.index')->with('success', 'Data booking berhasil dihapus');
     }
+
+    public function updateStatus(Request $request, Booking $booking)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,diproses,selesai,dibatalkan',
+        ]);
+
+        $booking->update(['status' => $request->status]);
+
+        return redirect()->route('admin.booking.index')->with('success', 'Status booking berhasil diperbarui');
+    }
 }
