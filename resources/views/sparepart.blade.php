@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Sparepart Motor - BrieLLaSparepart')
+@section('title', 'Sparepart Motor - BrieLLaMoto')
 
 @section('styles')
 <style>
@@ -149,7 +149,7 @@
                                     </select>
                                     <div class="alert alert-warning mt-2" id="dpInfo{{ $sparepart->id }}" style="display:none;">
                                         <strong>DP yang harus dibayar:</strong> <span id="dpAmount{{ $sparepart->id }}">Rp 0</span><br>
-                                        <small>Transfer ke: BCA 1234567890 a.n. BrieLLaSparepart</small>
+                                        <small>Transfer ke: BCA 1234567890 a.n. BrieLLaMoto</small>
                                     </div>
                                 </div>
                                 <div class="mb-3" id="buktiDiv{{ $sparepart->id }}" style="display:none;">
@@ -248,3 +248,5 @@
     });
 </script>
 @endsection
+
+

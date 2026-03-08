@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Beranda - BrieLLaSparepart')
+@section('title', 'Beranda - BrieLLaMoto')
 
 @section('styles')
 <style>
@@ -153,7 +153,7 @@
                 <div class="col-lg-5">
                     <div class="info-box">
                         <div class="brand-name">
-                            <i class="bi bi-tools"></i> BrieLLaSparepart
+                            <i class="bi bi-tools"></i> BrieLLaMoto
                         </div>
                         <p class="text-danger fw-bold mb-4"><i class="bi bi-star-fill"></i> Bengkel Motor & Sparepart Profesional</p>
                         
@@ -319,3 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </section>
 @endsection
+
+
+

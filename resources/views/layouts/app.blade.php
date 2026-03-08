@@ -115,7 +115,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="{{ route('home') }}">
-                <i class="bi bi-tools"></i> BrieLLaSparepart
+                <i class="bi bi-tools"></i> BrieLLaMoto
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -158,9 +158,9 @@
     <!-- Footer -->
     <footer class="text-center">
         <div class="container">
-            <p class="mb-1"><strong>BrieLLaSparepart</strong></p>
+            <p class="mb-1"><strong>BrieLLaMoto</strong></p>
             <p class="mb-0">Bengkel Motor & Sparepart Terpercaya - Solusi Kendaraan Roda 2 Anda</p>
-            <p class="mt-2 mb-0"><small>&copy; {{ date('Y') }} BrieLLaSparepart. All rights reserved.</small></p>
+            <p class="mt-2 mb-0"><small>&copy; {{ date('Y') }} BrieLLaMoto. All rights reserved.</small></p>
         </div>
     </footer>
 
@@ -168,3 +168,6 @@
     @yield('scripts')
 </body>
 </html>
+
+
+

@@ -105,7 +105,7 @@
             <!-- Sidebar -->
             <div class="col-md-2 sidebar p-0">
                 <div class="p-4">
-                    <h4 class="fw-bold"><i class="bi bi-tools"></i> BrieLLaSparepart</h4>
+                    <h4 class="fw-bold"><i class="bi bi-tools"></i> BrieLLaMoto</h4>
                     <p class="small mb-0">Admin Panel</p>
                 </div>
                 <nav class="nav flex-column mt-4">
@@ -151,3 +151,6 @@
     @yield('scripts')
 </body>
 </html>
+
+
+

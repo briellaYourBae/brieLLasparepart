@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Artikel Workshop - BrieLLaSparepart')
+@section('title', 'Artikel Workshop - BrieLLaMoto')
 
 @section('styles')
 <style>
@@ -81,3 +81,5 @@
     </div>
 </section>
 @endsection
+
+

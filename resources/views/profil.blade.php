@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tentang Kami - BrieLLaSparepart')
+@section('title', 'Tentang Kami - BrieLLaMoto')
 
 @section('styles')
 <style>
@@ -205,7 +205,7 @@
 <!-- Hero Section -->
 <section class="hero-about">
     <div class="container">
-        <h1 class="mb-4">🏍️ BrieLLaSparepart</h1>
+        <h1 class="mb-4">🏍️ BrieLLaMoto</h1>
         <p class="lead fs-3">Bengkel Motor Terpercaya Sejak 2015</p>
         <p class="fs-5">Solusi Lengkap untuk Kendaraan Roda 2 Anda</p>
     </div>
@@ -393,3 +393,5 @@
     </div>
 </section>
 @endsection
+
+

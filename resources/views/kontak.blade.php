@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kontak - BrieLLaSparepart')
+@section('title', 'Kontak - BrieLLaMoto')
 
 @section('styles')
 <style>
@@ -68,7 +68,7 @@
                         <i class="bi bi-envelope-fill"></i>
                     </div>
                     <h5 class="text-danger fw-bold">Email</h5>
-                    <p class="text-muted">info@briellasparepart.com<br>cs@briellasparepart.com</p>
+                    <p class="text-muted">info@BrieLLaMoto.com<br>cs@BrieLLaMoto.com</p>
                 </div>
             </div>
         </div>
@@ -211,3 +211,5 @@
     </div>
 </section>
 @endsection
+
+

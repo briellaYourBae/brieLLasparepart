@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $article->judul . ' - BrieLLaSparepart')
+@section('title', $article->judul . ' - BrieLLaMoto')
 
 @section('styles')
 <style>
@@ -79,3 +79,5 @@
     </div>
 </section>
 @endsection
+
+
