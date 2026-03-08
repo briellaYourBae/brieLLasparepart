@@ -90,7 +90,7 @@ Akses aplikasi di: `http://localhost:8000`
 ## 👤 Default Admin Credentials
 
 ```
-Email: admin@goldenstrategy.com
+Email: admin@briellasparepart.com
 Password: admin123
 Role: superadmin
 ```
