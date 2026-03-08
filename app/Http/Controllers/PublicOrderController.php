@@ -18,7 +18,7 @@ class PublicOrderController extends Controller
             'metode_pengambilan' => 'required|in:ambil_sendiri,diantar',
             'alamat' => 'required_if:metode_pengambilan,diantar',
             'bukti_pembayaran' => 'required_if:metode_pengambilan,diantar|image|mimes:jpeg,jpg,png,webp|max:5120',
-            'tanggal_ambil' => 'required_if:metode_pengambilan,ambil_sendiri|date',
+            'tanggal_ambil' => 'nullable|date',
         ]);
 
         $sparepart = Sparepart::findOrFail($request->produk_id);
