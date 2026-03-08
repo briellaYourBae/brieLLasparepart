@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Produk')
+@section('title', 'Tambah Sparepart')
 
 @section('content')
 <div class="mb-4">
-    <h2 class="fw-bold text-success">Tambah Produk</h2>
+    <h2 class="fw-bold text-danger">Tambah Sparepart</h2>
 </div>
 
 <div class="card shadow-sm">
     <div class="card-body">
-        <form action="{{ route('admin.produk.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.sparepart.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label class="form-label">Nama Produk</label>
@@ -53,10 +53,10 @@
             </div>
 
             <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-danger">
                     <i class="bi bi-save"></i> Simpan
                 </button>
-                <a href="{{ route('admin.produk.index') }}" class="btn btn-secondary">
+                <a href="{{ route('admin.sparepart.index') }}" class="btn btn-secondary">
                     <i class="bi bi-arrow-left"></i> Kembali
                 </a>
             </div>
