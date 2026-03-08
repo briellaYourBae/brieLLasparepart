@@ -16,7 +16,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, rgba(220,53,69,0.8), rgba(200,35,51,0.9)), url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200');
+        background: linear-gradient(135deg, rgba(220,53,69,0.85), rgba(200,35,51,0.9)), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920');
         background-size: cover;
         background-position: center;
         animation: zoomIn 20s infinite alternate;
@@ -31,12 +31,13 @@
         padding: 80px 0;
     }
     .info-box {
-        background: rgba(255,255,255,0.95);
+        background: rgba(255,255,255,0.98);
         backdrop-filter: blur(10px);
         border-radius: 20px;
-        padding: 30px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        padding: 35px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.4);
         animation: slideInRight 1s ease;
+        border: 3px solid #FD7E14;
     }
     @keyframes slideInRight {
         from { opacity: 0; transform: translateX(50px); }
@@ -131,14 +132,20 @@
             <div class="row align-items-center">
                 <div class="col-lg-7">
                     <div class="hero-text">
-                        <h1 class="display-3 fw-bold mb-4">Bengkel Motor Terpercaya</h1>
-                        <p class="lead fs-4 mb-4">Solusi lengkap untuk perawatan dan perbaikan kendaraan roda 2 Anda dengan teknisi profesional dan sparepart original</p>
+                        <div class="badge bg-danger mb-3 px-4 py-2 fs-6">
+                            <i class="bi bi-award-fill"></i> Bengkel Motor Terpercaya #1
+                        </div>
+                        <h1 class="display-2 fw-bold mb-4">Bengkel Motor<br><span style="color: #FD7E14;">Profesional</span></h1>
+                        <p class="lead fs-4 mb-4"><i class="bi bi-check-circle-fill text-warning"></i> Teknisi Berpengalaman<br>
+                        <i class="bi bi-check-circle-fill text-warning"></i> Sparepart Original<br>
+                        <i class="bi bi-check-circle-fill text-warning"></i> Harga Terjangkau<br>
+                        <i class="bi bi-check-circle-fill text-warning"></i> Garansi Servis</p>
                         <div class="d-flex gap-3 flex-wrap">
-                            <a href="{{ route('sparepart') }}" class="btn btn-danger btn-lg px-5 py-3">
-                                <i class="bi bi-cart-fill"></i> Lihat Sparepart
+                            <a href="{{ route('booking') }}" class="btn btn-danger btn-lg px-5 py-3 shadow-lg">
+                                <i class="bi bi-calendar-check"></i> Booking Servis Sekarang
                             </a>
-                            <a href="{{ route('booking') }}" class="btn btn-outline-light btn-lg px-5 py-3">
-                                <i class="bi bi-calendar-check"></i> Booking Servis
+                            <a href="{{ route('sparepart') }}" class="btn btn-warning btn-lg px-5 py-3 shadow-lg">
+                                <i class="bi bi-cart-fill"></i> Lihat Sparepart
                             </a>
                         </div>
                     </div>
@@ -148,14 +155,14 @@
                         <div class="brand-name">
                             <i class="bi bi-tools"></i> BrieLLaSparepart
                         </div>
-                        <p class="text-muted mb-4">Bengkel Motor & Sparepart Profesional</p>
+                        <p class="text-danger fw-bold mb-4"><i class="bi bi-star-fill"></i> Bengkel Motor & Sparepart Profesional</p>
                         
                         <div class="info-item">
                             <div class="info-icon">
                                 <i class="bi bi-geo-alt-fill"></i>
                             </div>
                             <div>
-                                <strong class="d-block">Lokasi</strong>
+                                <strong class="d-block text-danger">Lokasi Bengkel</strong>
                                 <span class="text-muted">Jl. Raya Motor No. 123, Kota</span>
                             </div>
                         </div>
@@ -165,7 +172,7 @@
                                 <i class="bi bi-clock-fill"></i>
                             </div>
                             <div>
-                                <strong class="d-block">Jam Operasional</strong>
+                                <strong class="d-block text-danger">Jam Buka Bengkel</strong>
                                 <span class="text-muted">Senin - Sabtu: 08:00 - 17:00</span>
                             </div>
                         </div>
@@ -175,18 +182,18 @@
                                 <i class="bi bi-telephone-fill"></i>
                             </div>
                             <div>
-                                <strong class="d-block">Hubungi Kami</strong>
-                                <span class="text-muted">0812-3456-7890</span>
+                                <strong class="d-block text-danger">Hubungi Bengkel</strong>
+                                <span class="text-muted">0812-3456-7890 (WhatsApp)</span>
                             </div>
                         </div>
                         
                         <div class="info-item">
                             <div class="info-icon">
-                                <i class="bi bi-envelope-fill"></i>
+                                <i class="bi bi-wrench-adjustable-circle-fill"></i>
                             </div>
                             <div>
-                                <strong class="d-block">Email</strong>
-                                <span class="text-muted">info@briellasparepart.com</span>
+                                <strong class="d-block text-danger">Layanan Bengkel</strong>
+                                <span class="text-muted">Servis, Ganti Oli, Tune Up, Sparepart</span>
                             </div>
                         </div>
                     </div>
@@ -202,13 +209,13 @@
         <div class="row text-center">
             <div class="col-md-3">
                 <div class="stat-box">
-                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-number" data-target="{{ \App\Models\Booking::where('status', 'selesai')->count() }}">0</div>
                     <p class="text-muted mb-0">Motor Terservis</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stat-box">
-                    <div class="stat-number" data-target="1000">0</div>
+                    <div class="stat-number" data-target="{{ \App\Models\Sparepart::count() }}">0</div>
                     <p class="text-muted mb-0">Sparepart Tersedia</p>
                 </div>
             </div>
