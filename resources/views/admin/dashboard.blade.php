@@ -15,15 +15,15 @@
 
 <div class="row g-4 mb-4">
     <div class="col-md-3">
-        <div class="stat-card border-start border-success border-4">
+        <div class="stat-card border-start border-danger border-4">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <p class="text-muted mb-1 small">Total Booking Servis</p>
-                    <h3 class="fw-bold text-success mb-0">{{ \App\Models\Booking::count() }}</h3>
-                    <small class="text-success"><i class="bi bi-arrow-up"></i> Data tercatat</small>
+                    <h3 class="fw-bold text-danger mb-0">{{ \App\Models\Booking::count() }}</h3>
+                    <small class="text-danger"><i class="bi bi-arrow-up"></i> Data tercatat</small>
                 </div>
-                <div class="bg-success bg-opacity-10 p-3 rounded-circle">
-                    <i class="bi bi-calendar-check fs-2 text-success"></i>
+                <div class="bg-danger bg-opacity-10 p-3 rounded-circle">
+                    <i class="bi bi-calendar-check fs-2 text-danger"></i>
                 </div>
             </div>
         </div>
@@ -57,15 +57,15 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="stat-card border-start border-danger border-4">
+        <div class="stat-card border-start border-success border-4">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <p class="text-muted mb-1 small">Total Article</p>
-                    <h3 class="fw-bold text-danger mb-0">{{ \App\Models\Article::count() }}</h3>
-                    <small class="text-danger"><i class="bi bi-file-text"></i> Article workshop</small>
+                    <h3 class="fw-bold text-success mb-0">{{ \App\Models\Article::count() }}</h3>
+                    <small class="text-success"><i class="bi bi-file-text"></i> Article workshop</small>
                 </div>
-                <div class="bg-danger bg-opacity-10 p-3 rounded-circle">
-                    <i class="bi bi-file-earmark-text fs-2 text-danger"></i>
+                <div class="bg-success bg-opacity-10 p-3 rounded-circle">
+                    <i class="bi bi-file-earmark-text fs-2 text-success"></i>
                 </div>
             </div>
         </div>
@@ -75,11 +75,17 @@
 <div class="row g-4 mb-4">
     <div class="col-md-8">
         <div class="card shadow-sm border-0">
-            <div class="card-header bg-gradient text-white" style="background: linear-gradient(135deg, #4CAF50, #81C784);">
-                <h5 class="mb-0"><i class="bi bi-bar-chart-line"></i> Statistik Order</h5>
+            <div class="card-header bg-gradient text-white" style="background: linear-gradient(135deg, #DC3545, #C82333);">
+                <h5 class="mb-0"><i class="bi bi-bar-chart-line"></i> Statistik Booking & Order</h5>
             </div>
             <div class="card-body">
                 @php
+                    $pendingBooking = \App\Models\Booking::where('status', 'pending')->count();
+                    $diprosesBooking = \App\Models\Booking::where('status', 'diproses')->count();
+                    $selesaiBooking = \App\Models\Booking::where('status', 'selesai')->count();
+                    $dibatalkanBooking = \App\Models\Booking::where('status', 'dibatalkan')->count();
+                    $totalBooking = $pendingBooking + $diprosesBooking + $selesaiBooking + $dibatalkanBooking;
+                    
                     $pending = \App\Models\Order::where('status', 'pending')->count();
                     $diproses = \App\Models\Order::where('status', 'diproses')->count();
                     $selesai = \App\Models\Order::where('status', 'selesai')->count();
@@ -87,7 +93,36 @@
                     $total = $pending + $diproses + $selesai + $dibatalkan;
                 @endphp
                 
+                <h6 class="fw-bold text-danger mb-3">Booking Servis</h6>
                 <div class="row text-center mb-4">
+                    <div class="col-3">
+                        <div class="p-3 bg-warning bg-opacity-10 rounded">
+                            <h4 class="fw-bold text-warning mb-0">{{ $pendingBooking }}</h4>
+                            <small class="text-muted">Pending</small>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="p-3 bg-info bg-opacity-10 rounded">
+                            <h4 class="fw-bold text-info mb-0">{{ $diprosesBooking }}</h4>
+                            <small class="text-muted">Diproses</small>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="p-3 bg-success bg-opacity-10 rounded">
+                            <h4 class="fw-bold text-success mb-0">{{ $selesaiBooking }}</h4>
+                            <small class="text-muted">Selesai</small>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="p-3 bg-danger bg-opacity-10 rounded">
+                            <h4 class="fw-bold text-danger mb-0">{{ $dibatalkanBooking }}</h4>
+                            <small class="text-muted">Dibatalkan</small>
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="fw-bold text-info mb-3 mt-4">Order Sparepart</h6>
+                <div class="row text-center mb-3">
                     <div class="col-3">
                         <div class="p-3 bg-warning bg-opacity-10 rounded">
                             <h4 class="fw-bold text-warning mb-0">{{ $pending }}</h4>
@@ -111,43 +146,6 @@
                             <h4 class="fw-bold text-danger mb-0">{{ $dibatalkan }}</h4>
                             <small class="text-muted">Dibatalkan</small>
                         </div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="text-muted">Pending</span>
-                        <span class="fw-bold text-warning">{{ $total > 0 ? round(($pending/$total)*100) : 0 }}%</span>
-                    </div>
-                    <div class="progress" style="height: 10px;">
-                        <div class="progress-bar bg-warning" style="width: {{ $total > 0 ? ($pending/$total)*100 : 0 }}%"></div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="text-muted">Diproses</span>
-                        <span class="fw-bold text-info">{{ $total > 0 ? round(($diproses/$total)*100) : 0 }}%</span>
-                    </div>
-                    <div class="progress" style="height: 10px;">
-                        <div class="progress-bar bg-info" style="width: {{ $total > 0 ? ($diproses/$total)*100 : 0 }}%"></div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="text-muted">Selesai</span>
-                        <span class="fw-bold text-success">{{ $total > 0 ? round(($selesai/$total)*100) : 0 }}%</span>
-                    </div>
-                    <div class="progress" style="height: 10px;">
-                        <div class="progress-bar bg-success" style="width: {{ $total > 0 ? ($selesai/$total)*100 : 0 }}%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="text-muted">Dibatalkan</span>
-                        <span class="fw-bold text-danger">{{ $total > 0 ? round(($dibatalkan/$total)*100) : 0 }}%</span>
-                    </div>
-                    <div class="progress" style="height: 10px;">
-                        <div class="progress-bar bg-danger" style="width: {{ $total > 0 ? ($dibatalkan/$total)*100 : 0 }}%"></div>
                     </div>
                 </div>
             </div>
