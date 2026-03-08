@@ -3,11 +3,8 @@
 @section('title', 'Data Booking Servis')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="mb-4">
     <h2 class="fw-bold text-danger">Data Booking Servis</h2>
-    <a href="{{ route('admin.booking.create') }}" class="btn btn-danger">
-        <i class="bi bi-plus-circle"></i> Tambah Booking
-    </a>
 </div>
 
 @if(session('success'))

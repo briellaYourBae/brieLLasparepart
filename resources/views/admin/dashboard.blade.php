@@ -160,9 +160,14 @@
             </div>
             <div class="card-body">
                 <div class="d-grid gap-3">
-                    <a href="{{ route('admin.booking.create') }}" class="btn btn-success btn-lg d-flex align-items-center justify-content-between">
-                        <span><i class="bi bi-calendar-plus"></i> Input Booking Servis</span>
-                        <i class="bi bi-arrow-right"></i>
+                    <a href="{{ route('admin.booking.index') }}" class="btn btn-danger btn-lg d-flex align-items-center justify-content-between">
+                        <span><i class="bi bi-calendar-check"></i> Lihat Booking Servis</span>
+                        @php
+                            $pendingBooking = \App\Models\Booking::where('status', 'pending')->count();
+                        @endphp
+                        @if($pendingBooking > 0)
+                        <span class="badge bg-white text-danger">{{ $pendingBooking }}</span>
+                        @endif
                     </a>
                     <a href="{{ route('admin.sparepart.create') }}" class="btn btn-info btn-lg d-flex align-items-center justify-content-between">
                         <span><i class="bi bi-plus-circle"></i> Tambah Sparepart</span>
@@ -195,7 +200,7 @@
                     <div class="col-md-6">
                         <h6 class="fw-bold text-success mb-3"><i class="bi bi-cart"></i> Order Terbaru</h6>
                         @php
-                            $orderTerbaru = \App\Models\Order::with('sparepart')->latest()->take(5)->get();
+                            $orderTerbaru = \App\Models\Order::with('sparepart')->latest()->take(10)->get();
                         @endphp
                         
                         @forelse($orderTerbaru as $order)
@@ -206,7 +211,7 @@
                             <div class="flex-grow-1">
                                 <strong>{{ $order->nama_pemesan }}</strong>
                                 <br>
-                                <small class="text-muted">{{ $order->sparepart->nama_produk }} - {{ $order->jumlah }} pcs</small>
+                                <small class="text-muted">{{ $order->sparepart->nama_produk ?? '-' }} - {{ $order->jumlah }} pcs</small>
                                 <br>
                                 <small class="text-muted"><i class="bi bi-clock"></i> {{ $order->created_at->diffForHumans() }}</small>
                             </div>
@@ -228,33 +233,37 @@
                         @endforelse
                     </div>
                     <div class="col-md-6">
-                        <h6 class="fw-bold text-warning mb-3"><i class="bi bi-file-text"></i> Article Terbaru</h6>
+                        <h6 class="fw-bold text-danger mb-3"><i class="bi bi-calendar-check"></i> Booking Servis Terbaru</h6>
                         @php
-                            $articleTerbaru = \App\Models\Article::with('user')->latest()->take(5)->get();
+                            $bookingTerbaru = \App\Models\Booking::latest()->take(10)->get();
                         @endphp
                         
-                        @forelse($articleTerbaru as $article)
+                        @forelse($bookingTerbaru as $booking)
                         <div class="d-flex align-items-start mb-3 p-2 rounded hover-bg">
-                            <div class="bg-warning bg-opacity-10 p-2 rounded me-3">
-                                <i class="bi bi-file-text text-warning"></i>
+                            <div class="bg-danger bg-opacity-10 p-2 rounded me-3">
+                                <i class="bi bi-wrench text-danger"></i>
                             </div>
                             <div class="flex-grow-1">
-                                <strong>{{ Str::limit($article->judul, 40) }}</strong>
+                                <strong>{{ $booking->nama }}</strong>
                                 <br>
-                                <small class="text-muted">Oleh {{ $article->user->name }}</small>
+                                <small class="text-muted">{{ $booking->motor }} - {{ $booking->jenis_servis }}</small>
                                 <br>
-                                <small class="text-muted"><i class="bi bi-clock"></i> {{ $article->created_at->diffForHumans() }}</small>
+                                <small class="text-muted"><i class="bi bi-clock"></i> {{ $booking->created_at->diffForHumans() }}</small>
                             </div>
-                            @if($article->status == 'published')
-                                <span class="badge bg-success">Published</span>
+                            @if($booking->status == 'pending')
+                                <span class="badge bg-warning">Pending</span>
+                            @elseif($booking->status == 'diproses')
+                                <span class="badge bg-info">Diproses</span>
+                            @elseif($booking->status == 'selesai')
+                                <span class="badge bg-success">Selesai</span>
                             @else
-                                <span class="badge bg-secondary">Draft</span>
+                                <span class="badge bg-danger">Dibatalkan</span>
                             @endif
                         </div>
                         @empty
                         <div class="text-center text-muted py-3">
                             <i class="bi bi-inbox fs-3"></i>
-                            <p class="mt-2 mb-0">Belum ada article</p>
+                            <p class="mt-2 mb-0">Belum ada booking</p>
                         </div>
                         @endforelse
                     </div>
