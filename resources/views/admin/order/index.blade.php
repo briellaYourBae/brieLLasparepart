@@ -39,7 +39,7 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $order->nama_pemesan }}<br><small class="text-muted">{{ $order->no_telepon }}</small></td>
-                        <td>{{ $order->sparepart->nama }}</td>
+                        <td>{{ $order->sparepart->nama_produk ?? '-' }}</td>
                         <td>{{ $order->jumlah }}</td>
                         <td>Rp {{ number_format($order->total_harga, 0, ',', '.') }}</td>
                         <td>

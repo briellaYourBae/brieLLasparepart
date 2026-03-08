@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/sparepart', [HomeController::class, 'sparepart'])->name('sparepart');
 Route::post('/order', [\App\Http\Controllers\PublicOrderController::class, 'store'])->name('order.store');
+Route::post('/booking', [\App\Http\Controllers\PublicBookingController::class, 'store'])->name('booking.store');
 Route::get('/booking', [HomeController::class, 'booking'])->name('booking');
 Route::get('/profil', [HomeController::class, 'profil'])->name('profil');
 Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');

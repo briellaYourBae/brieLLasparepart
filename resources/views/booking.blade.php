@@ -30,41 +30,45 @@
                         <h5 class="mb-0">Form Booking Servis</h5>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('order.store') }}" method="POST">
+                        @if(session('success'))
+                            <div class="alert alert-success alert-dismissible fade show">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        @endif
+                        <form action="{{ route('booking.store') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="produk_id" value="1">
-                            <input type="hidden" name="metode_pengambilan" value="ambil_sendiri">
                             
                             <div class="mb-3">
                                 <label class="form-label">Nama Lengkap</label>
-                                <input type="text" name="nama_pemesan" class="form-control" required>
+                                <input type="text" name="nama" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">No. Telepon/WhatsApp</label>
-                                <input type="text" name="no_telepon" class="form-control" required>
+                                <input type="text" name="no_hp" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Jenis Motor</label>
-                                <input type="text" name="alamat" class="form-control" placeholder="Contoh: Honda Beat 2020" required>
+                                <input type="text" name="motor" class="form-control" placeholder="Contoh: Honda Beat 2020" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Jenis Servis</label>
-                                <select class="form-select" required>
+                                <select name="jenis_servis" class="form-select" required>
                                     <option value="">Pilih Jenis Servis</option>
-                                    <option value="servis_ringan">Servis Ringan (Ganti Oli)</option>
-                                    <option value="servis_berkala">Servis Berkala</option>
-                                    <option value="tune_up">Tune Up</option>
-                                    <option value="ganti_ban">Ganti Ban</option>
-                                    <option value="perbaikan">Perbaikan/Troubleshooting</option>
+                                    <option value="Servis Ringan">Servis Ringan (Ganti Oli)</option>
+                                    <option value="Servis Berkala">Servis Berkala</option>
+                                    <option value="Tune Up">Tune Up</option>
+                                    <option value="Ganti Ban">Ganti Ban</option>
+                                    <option value="Perbaikan">Perbaikan/Troubleshooting</option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Tanggal Booking</label>
-                                <input type="date" name="tanggal_ambil" class="form-control" min="{{ date('Y-m-d') }}" required>
+                                <input type="date" name="tanggal_booking" class="form-control" min="{{ date('Y-m-d') }}" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Keluhan/Catatan</label>
-                                <textarea class="form-control" rows="3" placeholder="Jelaskan keluhan atau kebutuhan servis Anda"></textarea>
+                                <textarea name="keluhan" class="form-control" rows="3" placeholder="Jelaskan keluhan atau kebutuhan servis Anda"></textarea>
                             </div>
                             <div class="alert alert-info">
                                 <i class="bi bi-info-circle"></i> <strong>Info:</strong> Kami akan menghubungi Anda untuk konfirmasi jadwal servis.

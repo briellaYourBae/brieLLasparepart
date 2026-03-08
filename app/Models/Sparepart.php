@@ -15,4 +15,9 @@ class Sparepart extends Model
         'deskripsi',
         'foto_produk',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'produk_id');
+    }
 }
