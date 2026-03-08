@@ -31,16 +31,15 @@
                     </div>
                     <div class="card-body">
                         @if(session('success'))
-                            <div class="alert alert-success alert-dismissible fade show">
-                                <i class="bi bi-check-circle"></i> {{ session('success') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            </div>
                             <script>
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Berhasil!',
-                                    text: '{{ session('success') }}',
-                                    confirmButtonColor: '#DC3545'
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Booking Berhasil!',
+                                        html: '<strong>{{ session('success') }}</strong>',
+                                        confirmButtonColor: '#DC3545',
+                                        confirmButtonText: 'OK'
+                                    });
                                 });
                             </script>
                         @endif

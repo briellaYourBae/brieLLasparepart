@@ -41,18 +41,15 @@
 </div>
 
 @if(session('success'))
-    <div class="container mt-4">
-        <div class="alert alert-success alert-dismissible fade show">
-            <i class="bi bi-check-circle"></i> {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    </div>
     <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: '{{ session('success') }}',
-            confirmButtonColor: '#DC3545'
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Pesanan Berhasil!',
+                html: '<strong>{{ session('success') }}</strong>',
+                confirmButtonColor: '#DC3545',
+                confirmButtonText: 'OK'
+            });
         });
     </script>
 @endif
@@ -101,7 +98,7 @@
                             <h5 class="modal-title">Pesan {{ $sparepart->nama_produk }}</h5>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                         </div>
-                        <form action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data" onsubmit="closeModal{{ $sparepart->id }}(event)">
                             @csrf
                             <input type="hidden" name="produk_id" value="{{ $sparepart->id }}">
                             <input type="hidden" name="harga" value="{{ $sparepart->harga }}">
@@ -176,6 +173,13 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         @foreach($spareparts as $sparepart)
+        window.closeModal{{ $sparepart->id }} = function(event) {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('pesanModal{{ $sparepart->id }}'));
+            if (modal) {
+                modal.hide();
+            }
+        };
+        
         const metode{{ $sparepart->id }} = document.getElementById('metode{{ $sparepart->id }}');
         const alamatDiv{{ $sparepart->id }} = document.getElementById('alamatDiv{{ $sparepart->id }}');
         const pembayaranDiv{{ $sparepart->id }} = document.getElementById('pembayaranDiv{{ $sparepart->id }}');
