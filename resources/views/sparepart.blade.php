@@ -134,8 +134,8 @@
                                 </div>
                                 <div class="mb-3" id="buktiDiv{{ $sparepart->id }}" style="display:none;">
                                     <label class="form-label">Upload Bukti Pembayaran <span class="text-danger">*</span></label>
-                                    <input type="file" name="bukti_pembayaran" class="form-control" accept="image/*" id="buktiBayar{{ $sparepart->id }}">
-                                    <small class="text-muted">Wajib upload bukti transfer</small>
+                                    <input type="file" name="bukti_pembayaran" class="form-control" accept="image/jpeg,image/jpg,image/png,image/webp" id="buktiBayar{{ $sparepart->id }}">
+                                    <small class="text-muted">Wajib upload bukti transfer (JPG, PNG, WEBP)</small>
                                 </div>
                                 <div class="mb-3" id="tanggalDiv{{ $sparepart->id }}" style="display:none;">
                                     <label class="form-label">Tanggal Pengambilan</label>

@@ -17,7 +17,7 @@ class PublicOrderController extends Controller
             'jumlah' => 'required|integer|min:1',
             'metode_pengambilan' => 'required|in:ambil_sendiri,diantar',
             'alamat' => 'required_if:metode_pengambilan,diantar',
-            'bukti_pembayaran' => 'required_if:metode_pengambilan,diantar|image|max:5120',
+            'bukti_pembayaran' => 'required_if:metode_pengambilan,diantar|image|mimes:jpeg,jpg,png,webp|max:5120',
             'tanggal_ambil' => 'required_if:metode_pengambilan,ambil_sendiri|date',
         ]);
 

@@ -25,7 +25,7 @@ class ArticleController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required|string',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'status' => 'required|in:draft,published',
         ]);
 
@@ -52,7 +52,7 @@ class ArticleController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required|string',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'status' => 'required|in:draft,published',
         ]);
 

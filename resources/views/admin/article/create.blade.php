@@ -29,7 +29,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Foto Artikel</label>
-                <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/*" id="fotoInput">
+                <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/jpeg,image/jpg,image/png,image/webp" id="fotoInput">
                 <small class="text-muted">Ukuran foto akan otomatis disesuaikan 250x250px untuk tampilan grid</small>
                 @error('foto')
                     <div class="invalid-feedback">{{ $message }}</div>

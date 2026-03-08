@@ -52,7 +52,7 @@
                         <img src="{{ asset('storage/' . $sparepart->foto_produk) }}" alt="{{ $sparepart->nama_produk }}" style="max-width: 200px;" class="img-thumbnail">
                     </div>
                 @endif
-                <input type="file" name="foto_produk" class="form-control @error('foto_produk') is-invalid @enderror" accept="image/*">
+                <input type="file" name="foto_produk" class="form-control @error('foto_produk') is-invalid @enderror" accept="image/jpeg,image/jpg,image/png,image/webp">
                 <small class="text-muted">Kosongkan jika tidak ingin mengubah foto</small>
                 @error('foto_produk')
                     <div class="invalid-feedback">{{ $message }}</div>

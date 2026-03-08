@@ -52,7 +52,7 @@ class SparepartController extends Controller
             'harga' => 'required|integer|min:0',
             'stok' => 'required|integer|min:0',
             'deskripsi' => 'required|string',
-            'foto_produk' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'foto_produk' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
         $data = $request->all();

@@ -46,7 +46,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Foto Produk</label>
-                <input type="file" name="foto_produk" class="form-control @error('foto_produk') is-invalid @enderror" accept="image/*">
+                <input type="file" name="foto_produk" class="form-control @error('foto_produk') is-invalid @enderror" accept="image/jpeg,image/jpg,image/png,image/webp">
                 @error('foto_produk')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

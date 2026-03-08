@@ -36,7 +36,7 @@
                         <img src="{{ asset('storage/' . $article->foto) }}" alt="{{ $article->judul }}" style="width: 250px; height: 250px; object-fit: cover; border-radius: 10px; border: 2px solid #DC3545;">
                     </div>
                 @endif
-                <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/*" id="fotoInput">
+                <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/jpeg,image/jpg,image/png,image/webp" id="fotoInput">
                 <small class="text-muted">Kosongkan jika tidak ingin mengubah foto. Ukuran akan disesuaikan 250x250px</small>
                 @error('foto')
                     <div class="invalid-feedback">{{ $message }}</div>

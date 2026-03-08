@@ -15,6 +15,7 @@ class Booking extends Model
         'jenis_servis',
         'tanggal_booking',
         'keluhan',
+        'status',
     ];
 
     protected $casts = [
