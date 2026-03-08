@@ -36,7 +36,12 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                             </div>
                             <script>
-                                alert('✅ {{ session('success') }}');
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil!',
+                                    text: '{{ session('success') }}',
+                                    confirmButtonColor: '#DC3545'
+                                });
                             </script>
                         @endif
                         <form action="{{ route('booking.store') }}" method="POST">
