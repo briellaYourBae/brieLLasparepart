@@ -7,24 +7,25 @@
     .article-header {
         background: linear-gradient(135deg, #DC3545, #C82333);
         color: white;
-        padding: 60px 0;
+        padding: 40px 0;
     }
-    .article-featured-img {
+    .article-image {
         width: 100%;
         max-height: 500px;
         object-fit: cover;
         border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
     .article-content {
         font-size: 1.1rem;
         line-height: 1.8;
-        text-align: justify;
+        color: #333;
     }
     .article-meta {
         background: #f8f9fa;
-        padding: 1rem;
+        padding: 20px;
         border-radius: 10px;
-        margin-bottom: 2rem;
+        margin-bottom: 30px;
     }
 </style>
 @endsection
@@ -32,26 +33,36 @@
 @section('content')
 <div class="article-header">
     <div class="container">
+        <a href="{{ route('article') }}" class="btn btn-light mb-3">
+            <i class="bi bi-arrow-left"></i> Kembali ke Artikel
+        </a>
         <h1 class="fw-bold">{{ $article->judul }}</h1>
-        <p class="mb-0"><i class="bi bi-calendar"></i> {{ $article->created_at->format('d F Y') }} | <i class="bi bi-person"></i> {{ $article->user->name }}</p>
     </div>
 </div>
 
 <section class="py-5">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-10">
                 <div class="article-meta">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span><i class="bi bi-calendar text-danger"></i> {{ $article->created_at->format('d F Y') }}</span>
-                        <span><i class="bi bi-person text-danger"></i> {{ $article->user->name }}</span>
+                        <div>
+                            <i class="bi bi-calendar text-danger"></i> 
+                            <strong>{{ $article->created_at->format('d F Y') }}</strong>
+                        </div>
+                        <div>
+                            <i class="bi bi-person text-danger"></i> 
+                            <strong>{{ $article->user->name }}</strong>
+                        </div>
                     </div>
                 </div>
 
                 @if($article->foto)
-                    <img src="{{ asset('storage/' . $article->foto) }}" alt="{{ $article->judul }}" class="article-featured-img shadow mb-4">
+                <div class="text-center mb-4">
+                    <img src="{{ asset('storage/' . $article->foto) }}" alt="{{ $article->judul }}" class="article-image">
+                </div>
                 @endif
-                
+
                 <div class="article-content">
                     {!! nl2br(e($article->konten)) !!}
                 </div>
@@ -60,7 +71,7 @@
 
                 <div class="text-center">
                     <a href="{{ route('article') }}" class="btn btn-danger btn-lg">
-                        <i class="bi bi-arrow-left"></i> Kembali ke Artikel
+                        <i class="bi bi-arrow-left"></i> Kembali ke Daftar Artikel
                     </a>
                 </div>
             </div>
