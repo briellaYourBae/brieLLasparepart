@@ -5,10 +5,43 @@
 @section('styles')
 <style>
     .page-header {
-        background: linear-gradient(135deg, #DC3545, #C82333);
+        background: linear-gradient(135deg, #DC3545, #212529);
         color: white;
-        padding: 60px 0;
+        padding: 80px 0;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .page-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1920') center/cover;
+        opacity: 0.15;
+    }
+    .page-header h1 {
+        position: relative;
+        z-index: 1;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+    .booking-card {
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .info-card {
+        border: 2px solid #f0f0f0;
+        border-radius: 15px;
+        transition: all 0.3s;
+    }
+    .info-card:hover {
+        border-color: #DC3545;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(220,53,69,0.15);
     }
 </style>
 @endsection
@@ -16,8 +49,25 @@
 @section('content')
 <div class="page-header">
     <div class="container">
-        <h1 class="fw-bold">🔧 Booking Servis Motor</h1>
-        <p class="lead">Reservasi Servis Motor Anda dengan Mudah</p>
+        <div class="mb-3">
+            <i class="bi bi-calendar-check-fill fs-1"></i>
+        </div>
+        <h1 class="fw-bold display-4 mb-3">Booking Servis Motor</h1>
+        <p class="lead">Reservasi servis motor Anda dengan mudah dan cepat, tanpa antri</p>
+        <div class="d-flex justify-content-center gap-4 mt-4">
+            <div class="text-center">
+                <i class="bi bi-person-check fs-3"></i>
+                <p class="mb-0 small mt-2">Teknisi Ahli</p>
+            </div>
+            <div class="text-center">
+                <i class="bi bi-tools fs-3"></i>
+                <p class="mb-0 small mt-2">Peralatan Modern</p>
+            </div>
+            <div class="text-center">
+                <i class="bi bi-shield-check fs-3"></i>
+                <p class="mb-0 small mt-2">Garansi 30 Hari</p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -25,7 +75,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card shadow-sm">
+                <div class="card shadow-lg booking-card">
                     <div class="card-header bg-danger text-white">
                         <h5 class="mb-0">Form Booking Servis</h5>
                     </div>
@@ -104,24 +154,24 @@
 
                 <div class="row mt-4 g-3">
                     <div class="col-md-4">
-                        <div class="card text-center p-3">
-                            <i class="bi bi-clock text-danger fs-1"></i>
-                            <h6 class="mt-2">Jam Operasional</h6>
-                            <small class="text-muted">Senin-Sabtu<br>08:00 - 17:00</small>
+                        <div class="card info-card text-center p-4">
+                            <i class="bi bi-clock-fill text-danger fs-1 mb-3"></i>
+                            <h6 class="fw-bold text-danger">Jam Operasional</h6>
+                            <small class="text-muted">Senin - Sabtu<br>08:00 - 17:00 WIB</small>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card text-center p-3">
-                            <i class="bi bi-geo-alt text-danger fs-1"></i>
-                            <h6 class="mt-2">Lokasi Bengkel</h6>
-                            <small class="text-muted">Jl. Raya Motor No. 123</small>
+                        <div class="card info-card text-center p-4">
+                            <i class="bi bi-geo-alt-fill text-danger fs-1 mb-3"></i>
+                            <h6 class="fw-bold text-danger">Lokasi Bengkel</h6>
+                            <small class="text-muted">Jl. Raya Motor No. 123<br>Kota</small>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card text-center p-3">
-                            <i class="bi bi-telephone text-danger fs-1"></i>
-                            <h6 class="mt-2">Hubungi Kami</h6>
-                            <small class="text-muted">0812-3456-7890</small>
+                        <div class="card info-card text-center p-4">
+                            <i class="bi bi-whatsapp text-danger fs-1 mb-3"></i>
+                            <h6 class="fw-bold text-danger">Hubungi Kami</h6>
+                            <small class="text-muted">0812-3456-7890<br>WhatsApp 24/7</small>
                         </div>
                     </div>
                 </div>

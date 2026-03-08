@@ -5,29 +5,74 @@
 @section('styles')
 <style>
     .page-header {
-        background: linear-gradient(135deg, #DC3545, #C82333);
+        background: linear-gradient(135deg, #DC3545, #212529);
         color: white;
-        padding: 60px 0;
+        padding: 80px 0;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .page-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1920') center/cover;
+        opacity: 0.15;
+    }
+    .page-header h1 {
+        position: relative;
+        z-index: 1;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
     }
     .product-card {
-        border: none;
-        border-radius: 15px;
+        border: 2px solid #f0f0f0;
+        border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        transition: transform 0.3s;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        transition: all 0.4s;
         height: 100%;
+        background: white;
     }
     .product-card:hover {
-        transform: translateY(-10px);
+        transform: translateY(-15px);
+        box-shadow: 0 15px 40px rgba(220,53,69,0.25);
+        border-color: #DC3545;
     }
     .product-img {
-        height: 250px;
+        height: 280px;
         object-fit: cover;
+        border-bottom: 3px solid #FD7E14;
     }
     .badge-stock {
-        background: #DC3545;
+        background: linear-gradient(135deg, #DC3545, #FD7E14);
         color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+    .price-tag {
+        background: linear-gradient(135deg, #DC3545, #C82333);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 15px;
+        display: inline-block;
+        font-size: 1.3rem;
+        font-weight: 800;
+        box-shadow: 0 5px 15px rgba(220,53,69,0.3);
+    }
+    .btn-order {
+        background: linear-gradient(135deg, #DC3545, #FD7E14);
+        border: none;
+        padding: 12px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    .btn-order:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(220,53,69,0.4);
     }
 </style>
 @endsection
@@ -35,8 +80,25 @@
 @section('content')
 <div class="page-header">
     <div class="container">
-        <h1 class="fw-bold">🔧 Sparepart Motor</h1>
-        <p class="lead">Sparepart Original & Berkualitas untuk Motor Anda</p>
+        <div class="mb-3">
+            <i class="bi bi-gear-fill fs-1"></i>
+        </div>
+        <h1 class="fw-bold display-4 mb-3">Sparepart Motor Original</h1>
+        <p class="lead">Sparepart berkualitas tinggi dengan harga terjangkau dan bergaransi resmi</p>
+        <div class="d-flex justify-content-center gap-4 mt-4">
+            <div class="text-center">
+                <i class="bi bi-shield-check fs-3"></i>
+                <p class="mb-0 small mt-2">100% Original</p>
+            </div>
+            <div class="text-center">
+                <i class="bi bi-award fs-3"></i>
+                <p class="mb-0 small mt-2">Bergaransi</p>
+            </div>
+            <div class="text-center">
+                <i class="bi bi-truck fs-3"></i>
+                <p class="mb-0 small mt-2">Bisa Diantar</p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -90,15 +152,15 @@
                             <i class="bi bi-image fs-1"></i>
                         </div>
                     @endif
-                    <div class="card-body">
-                        <h5 class="card-title text-danger fw-bold">{{ $sparepart->nama_produk }}</h5>
-                        <p class="text-muted">{{ $sparepart->deskripsi }}</p>
+                    <div class="card-body p-4">
+                        <h5 class="card-title text-danger fw-bold mb-2">{{ $sparepart->nama_produk }}</h5>
+                        <p class="text-muted small mb-3">{{ Str::limit($sparepart->deskripsi, 80) }}</p>
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="fw-bold text-danger fs-5">Rp {{ number_format($sparepart->harga, 0, ',', '.') }}</span>
-                            <span class="badge badge-stock">Stok: {{ $sparepart->stok }}</span>
+                            <div class="price-tag">Rp {{ number_format($sparepart->harga, 0, ',', '.') }}</div>
+                            <span class="badge badge-stock"><i class="bi bi-box-seam"></i> Stok: {{ $sparepart->stok }}</span>
                         </div>
-                        <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#pesanModal{{ $sparepart->id }}">
-                            <i class="bi bi-cart-plus"></i> Pesan Sekarang
+                        <button class="btn btn-danger btn-order w-100" data-bs-toggle="modal" data-bs-target="#pesanModal{{ $sparepart->id }}">
+                            <i class="bi bi-cart-plus-fill"></i> Pesan Sekarang
                         </button>
                     </div>
                 </div>

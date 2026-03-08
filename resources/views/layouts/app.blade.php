@@ -114,8 +114,14 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">
-                <i class="bi bi-tools"></i> BrieLLaMoto
+            <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
+                <div class="bg-warning rounded-circle p-2 me-2" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-tools text-dark fs-5"></i>
+                </div>
+                <div>
+                    <div class="fw-bold" style="font-size: 1.4rem; line-height: 1.2;">BrieLLaMoto</div>
+                    <small style="font-size: 0.65rem; opacity: 0.9;">Bengkel Motor Profesional</small>
+                </div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -156,11 +162,47 @@
     </div>
 
     <!-- Footer -->
-    <footer class="text-center">
+    <footer>
         <div class="container">
-            <p class="mb-1"><strong>BrieLLaMoto</strong></p>
-            <p class="mb-0">Bengkel Motor & Sparepart Terpercaya - Solusi Kendaraan Roda 2 Anda</p>
-            <p class="mt-2 mb-0"><small>&copy; {{ date('Y') }} BrieLLaMoto. All rights reserved.</small></p>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-warning rounded-circle p-2 me-2" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-tools text-dark fs-5"></i>
+                        </div>
+                        <h5 class="mb-0 fw-bold">BrieLLaMoto</h5>
+                    </div>
+                    <p class="small">Bengkel motor profesional dengan teknisi berpengalaman 10+ tahun. Sparepart original bergaransi.</p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle" style="width: 35px; height: 35px; padding: 0; display: flex; align-items: center; justify-content: center;"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle" style="width: 35px; height: 35px; padding: 0; display: flex; align-items: center; justify-content: center;"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle" style="width: 35px; height: 35px; padding: 0; display: flex; align-items: center; justify-content: center;"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3"><i class="bi bi-info-circle"></i> Informasi Bengkel</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><i class="bi bi-geo-alt-fill text-warning"></i> Jl. Raya Motor No. 123, Kota</li>
+                        <li class="mb-2"><i class="bi bi-telephone-fill text-warning"></i> 0812-3456-7890 (WhatsApp)</li>
+                        <li class="mb-2"><i class="bi bi-envelope-fill text-warning"></i> info@briellamoto.com</li>
+                        <li class="mb-2"><i class="bi bi-clock-fill text-warning"></i> Senin - Sabtu: 08:00 - 17:00</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3"><i class="bi bi-wrench-adjustable"></i> Layanan Kami</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><i class="bi bi-check-circle text-warning"></i> Servis Berkala & Tune Up</li>
+                        <li class="mb-2"><i class="bi bi-check-circle text-warning"></i> Ganti Oli & Filter</li>
+                        <li class="mb-2"><i class="bi bi-check-circle text-warning"></i> Perbaikan Mesin & Kelistrikan</li>
+                        <li class="mb-2"><i class="bi bi-check-circle text-warning"></i> Sparepart Original</li>
+                        <li class="mb-2"><i class="bi bi-check-circle text-warning"></i> Booking Online 24/7</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-light">
+            <div class="text-center small">
+                <p class="mb-0">&copy; {{ date('Y') }} <strong>BrieLLaMoto</strong> - Bengkel Motor Terpercaya. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
 

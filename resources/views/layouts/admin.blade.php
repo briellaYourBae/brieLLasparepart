@@ -26,9 +26,10 @@
         }
         .sidebar {
             min-height: 100vh;
-            background: linear-gradient(180deg, var(--red-dark), var(--red-primary));
+            background: linear-gradient(180deg, #212529, #DC3545);
             color: white;
             animation: slideInLeft 0.5s ease;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
         }
         @keyframes slideInLeft {
             from { transform: translateX(-100%); }
@@ -104,37 +105,44 @@
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-2 sidebar p-0">
-                <div class="p-4">
-                    <h4 class="fw-bold"><i class="bi bi-tools"></i> BrieLLaMoto</h4>
-                    <p class="small mb-0">Admin Panel</p>
+                <div class="p-4 border-bottom border-light border-opacity-25">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="bg-warning rounded-circle p-2 me-2" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-tools text-dark fs-5"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-0">BrieLLaMoto</h5>
+                            <small class="opacity-75">Admin Panel</small>
+                        </div>
+                    </div>
                 </div>
-                <nav class="nav flex-column mt-4">
+                <nav class="nav flex-column mt-3">
                     <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
-                        <i class="bi bi-speedometer2"></i> Dashboard
+                        <i class="bi bi-speedometer2 me-2"></i> Dashboard
                     </a>
-                    <a class="nav-link" href="{{ route('admin.booking.index') }}">
-                        <i class="bi bi-calendar-check"></i> Booking Servis
+                    <a class="nav-link {{ request()->routeIs('admin.booking.*') ? 'active' : '' }}" href="{{ route('admin.booking.index') }}">
+                        <i class="bi bi-calendar-check me-2"></i> Booking Servis
                     </a>
-                    <a class="nav-link" href="{{ route('admin.sparepart.index') }}">
-                        <i class="bi bi-box-seam"></i> Sparepart
+                    <a class="nav-link {{ request()->routeIs('admin.sparepart.*') ? 'active' : '' }}" href="{{ route('admin.sparepart.index') }}">
+                        <i class="bi bi-box-seam me-2"></i> Sparepart
                     </a>
-                    <a class="nav-link" href="{{ route('admin.order.index') }}">
-                        <i class="bi bi-cart-check"></i> Pesanan
+                    <a class="nav-link {{ request()->routeIs('admin.order.*') ? 'active' : '' }}" href="{{ route('admin.order.index') }}">
+                        <i class="bi bi-cart-check me-2"></i> Pesanan
                     </a>
-                    <a class="nav-link" href="{{ route('admin.article.index') }}">
-                        <i class="bi bi-file-earmark-text"></i> Artikel
+                    <a class="nav-link {{ request()->routeIs('admin.article.*') ? 'active' : '' }}" href="{{ route('admin.article.index') }}">
+                        <i class="bi bi-file-earmark-text me-2"></i> Artikel
                     </a>
-                    <a class="nav-link" href="{{ route('admin.user.index') }}">
-                        <i class="bi bi-people"></i> Manajemen User
+                    <a class="nav-link {{ request()->routeIs('admin.user.*') ? 'active' : '' }}" href="{{ route('admin.user.index') }}">
+                        <i class="bi bi-people me-2"></i> Manajemen User
                     </a>
-                    <hr class="text-white">
+                    <hr class="text-white mx-3 opacity-25">
                     <a class="nav-link" href="{{ route('home') }}" target="_blank">
-                        <i class="bi bi-globe"></i> Lihat Website
+                        <i class="bi bi-globe me-2"></i> Lihat Website
                     </a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="nav-link border-0 bg-transparent w-100 text-start">
-                            <i class="bi bi-box-arrow-right"></i> Logout
+                            <i class="bi bi-box-arrow-right me-2"></i> Logout
                         </button>
                     </form>
                 </nav>
